@@ -4,12 +4,21 @@ $('#myModal').on('shown.bs.modal', function () {
 
 // variable to grab the button
 const button = document.querySelector("#jokeButton")
+const nextButton = document.querySelector("#nextButton")
 
-// event listener function
+// event listener function for buttons
 button.addEventListener("click", function () {
   makeApiRequest();
 });
 
+nextButton.addEventListener("click", function () {
+  makeApiRequest();
+});
+
+
+
+
+//async api call to display joke in modal
 async function makeApiRequest() {
   const response = await fetch('https://icanhazdadjoke.com/', {
     headers: {
@@ -17,12 +26,26 @@ async function makeApiRequest() {
     }
   })
 
-  .then(response => response.json())
-  .then(data => console.log(data))
-  .catch(error => console.error(error));
+    .then(response => response.json())
+    .then(data => {
+      let joke = data.joke
+      const jokeDisp = document.querySelector('.modal-body');
+      let para = document.createElement("p")
+      para.innerText = joke;
+      jokeDisp.appendChild(para)
+
+      para.innerText = joke;
+    });
+
+
+document.body.appendChild(div);
+
 
   
-  // const data = await response.json();
+  
+
+  // const data = await response.json(); 
 
   // console.log(data);
 }
+ 
