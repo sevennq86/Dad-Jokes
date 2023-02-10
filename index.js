@@ -12,7 +12,6 @@ button.addEventListener("click", function () {
 });
 
 nextButton.addEventListener("click", function () {
-  
   makeApiRequest();
 });
 
@@ -30,12 +29,24 @@ async function makeApiRequest() {
     .then(response => response.json())
     .then(data => {
       let joke = data.joke
-      const jokeDisp = document.querySelector('.modal-body');
-      let para = document.createElement("p")
-      para.innerText = null;
-      para.innerText = joke;
-      jokeDisp.appendChild(para)
+      const jokeDisp = document.querySelector('#jokeHolder');
+      // let para = document.createElement("p")
+      jokeDisp.innerText = "";  
+      jokeDisp.innerText = joke;
+      
+      // jokeDisp.appendChild(para)
     });
 
+  
+    // .then(response => response.json())
+    // .then(data => {
+    //   let joke = data.joke
+    //   const jokeDisp = document.querySelector('.modal-body');
+    //   let para = document.createElement("p")
+    //   para.innerText = "";  
+    //   para.innerText = joke;
+      
+    //   jokeDisp.appendChild(para)
+    // });
 }
  
